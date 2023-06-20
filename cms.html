@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Management System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      padding-top: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">CONTENT MANAGEMENT SYSTEM</a>
+    </div>
+  </nav>
+
+  <!-- Content Editor -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Content Editor</h2>
+        <form id="contentForm">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" id="content" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Publish</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Published Content -->
+  <div class="container mt-5">
+    <h2>Published Content</h2>
+    <div id="contentList"></div>
+  </div>
+
+  <script>
+    document.getElementById('contentForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      var title = document.getElementById('title').value;
+      var content = document.getElementById('content').value;
+
+      // Create a new content element
+      var contentElement = document.createElement('div');
+      contentElement.className = 'card mb-3';
+      contentElement.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${content}</p>
+        </div>
+      `;
+
+      // Append the new content to the content list
+      document.getElementById('contentList').appendChild(contentElement);
+
+      // Clear the form
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+    });
+  </script>
+
+</body>
+
+</html>

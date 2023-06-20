@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EKENE'S BLOG</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="blog.CSS">
+  
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Joseph okoye</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Published BLOGS</a>
+          </li>
+      
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Create Blog Form -->
+  <div class="container">
+    <h1>Create a Blog Post</h1>
+    <form id="blogForm">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Publish</button>
+    </form>
+  </div>
+
+  <!-- Published Blogs -->
+  <div class="container mt-5">
+    <h2>Published Blogs</h2>
+    <div id="blogList"></div>
+  </div>
+
+  <script>
+    document.getElementById('blogForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      var title = document.getElementById('title').value;
+      var content = document.getElementById('content').value;
+
+      // Create a new blog post element
+      var blogPost = document.createElement('div');
+      blogPost.className = 'card mb-3';
+      blogPost.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${content}</p>
+        </div>
+      `;
+
+      // Append the new blog post to the blog list
+      document.getElementById('blogList').appendChild(blogPost);
+
+      // Clear the form
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+    });
+  </script>
+
+</body>
+
+</html>
+
